@@ -1,0 +1,122 @@
+.progress-tracker {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 8px 0;
+}
+
+.progress-line {
+  position: absolute;
+  left: 17px;
+  top: 24px;
+  bottom: 24px;
+  width: 3px;
+  background: linear-gradient(to bottom,
+    rgba(99, 102, 241, 0.3) 0%,
+    rgba(139, 92, 246, 0.3) 50%,
+    rgba(217, 70, 239, 0.3) 100%
+  );
+  z-index: 0;
+  border-radius: 2px;
+}
+
+.progress-step {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.progress-dot {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(30, 41, 59, 0.9);
+  border: 3px solid rgba(71, 85, 105, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+  position: relative;
+}
+
+.progress-dot::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.progress-number {
+  font-size: 14px;
+  font-weight: 700;
+  color: #64748b;
+  transition: all 0.3s ease;
+}
+
+.progress-step.active .progress-dot {
+  border-color: #6366f1;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2), 0 4px 12px rgba(99, 102, 241, 0.4);
+  transform: scale(1.15);
+}
+
+.progress-step.active .progress-dot::before {
+  opacity: 1;
+  animation: pulse 2s infinite;
+}
+
+.progress-step.active .progress-number {
+  color: white;
+}
+
+.progress-step.completed .progress-dot {
+  border-color: #10b981;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
+}
+
+.progress-step.completed .progress-number {
+  color: white;
+}
+
+.progress-step:hover .progress-dot {
+  transform: scale(1.1);
+  border-color: #8b5cf6;
+}
+
+@media (max-width: 768px) {
+  .progress-tracker {
+    gap: 16px;
+    padding: 6px 0;
+  }
+
+  .progress-dot {
+    width: 32px;
+    height: 32px;
+  }
+
+  .progress-number {
+    font-size: 13px;
+  }
+
+  .progress-line {
+    left: 15px;
+    top: 20px;
+    bottom: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .progress-tracker {
+    display: none;
+  }
+}
+
+/* Made with Bob */

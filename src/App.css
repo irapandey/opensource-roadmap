@@ -1,0 +1,188 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(to bottom, #0f172a 0%, #1e293b 100%);
+}
+
+.app-header {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
+  color: white;
+  padding: 64px 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(99, 102, 241, 0.3);
+}
+
+.app-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  animation: shimmer 3s infinite;
+}
+
+.header-content {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.main-title {
+  font-size: 42px;
+  font-weight: 800;
+  margin: 0 0 16px 0;
+  letter-spacing: -1px;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(to right, #fff, #e0e7ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.main-subtitle {
+  font-size: 18px;
+  opacity: 0.95;
+  margin: 0;
+  font-weight: 400;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
+}
+
+.main-subtitle a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.5);
+  text-underline-offset: 3px;
+  transition: all 0.3s ease;
+}
+
+.main-subtitle a:hover {
+  text-decoration-color: rgba(255, 255, 255, 1);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.app-main {
+  flex: 1;
+  padding: 48px 24px;
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.roadmap-layout {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.progress-sidebar {
+  position: sticky;
+  top: 24px;
+  animation: slideInLeft 0.6s ease-out 0.4s both;
+}
+
+.roadmap-content {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.app-footer {
+  background: rgba(15, 23, 42, 0.8);
+  border-top: 1px solid rgba(99, 102, 241, 0.2);
+  padding: 24px;
+  text-align: center;
+  color: #94a3b8;
+  font-size: 14px;
+  backdrop-filter: blur(10px);
+}
+
+.app-footer p {
+  margin: 0;
+}
+
+@media (min-width: 769px) {
+  .roadmap-content {
+    margin: 0 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-header {
+    padding: 40px 20px;
+  }
+
+  .main-title {
+    font-size: 32px;
+  }
+
+  .main-subtitle {
+    font-size: 16px;
+  }
+
+  .app-main {
+    padding: 24px 16px;
+  }
+
+  .roadmap-layout {
+    grid-template-columns: 40px 1fr;
+    gap: 16px;
+  }
+
+  .progress-sidebar {
+    top: 16px;
+  }
+
+  .roadmap-content {
+    max-width: 100%;
+    margin: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-header {
+    padding: 32px 16px;
+  }
+
+  .main-title {
+    font-size: 28px;
+    letter-spacing: -0.5px;
+  }
+
+  .main-subtitle {
+    font-size: 15px;
+  }
+
+  .app-main {
+    padding: 20px 12px;
+  }
+
+  .roadmap-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .progress-sidebar {
+    display: none;
+  }
+
+  .roadmap-content {
+    max-width: 100%;
+    margin: 0;
+  }
+}
+
+/* Made with Bob */
