@@ -196,6 +196,5 @@ export const roadmapData = [
 ];
 
 // Data extracted from "Open Source, One Step at a Time" blog series
-// Created with insights from open-source-blog-insights.json
 
 // Made with Bob
