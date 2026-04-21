@@ -5,6 +5,8 @@
   border: 1px solid var(--border-accent);
   backdrop-filter: blur(10px);
   animation: fadeInUp 0.5s ease-out both;
+  position: relative;
+  overflow: hidden;
 }
 
 .section-card-single {
@@ -361,6 +363,129 @@
   .subsection-item,
   .group-item {
     font-size: 15px;
+  }
+}
+
+.mini-confetti-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.mini-confetti {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  opacity: 0;
+}
+
+.mini-confetti-1 {
+  background: #6366f1;
+  top: 50%;
+  left: 50%;
+  animation: confettiBurst1 1.2s ease-out;
+}
+
+.mini-confetti-2 {
+  background: #8b5cf6;
+  top: 50%;
+  left: 50%;
+  animation: confettiBurst2 1.2s ease-out;
+}
+
+.mini-confetti-3 {
+  background: #10b981;
+  top: 50%;
+  left: 50%;
+  animation: confettiBurst3 1.2s ease-out;
+}
+
+.mini-confetti-4 {
+  background: #f59e0b;
+  top: 50%;
+  left: 50%;
+  animation: confettiBurst4 1.2s ease-out;
+}
+
+.mini-confetti-5 {
+  background: #ec4899;
+  top: 50%;
+  left: 50%;
+  animation: confettiBurst5 1.2s ease-out;
+}
+
+.mini-confetti-6 {
+  background: #3b82f6;
+  top: 50%;
+  left: 50%;
+  animation: confettiBurst6 1.2s ease-out;
+}
+
+@keyframes confettiBurst1 {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-80px, -120px) scale(0.5) rotate(180deg);
+  }
+}
+
+@keyframes confettiBurst2 {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(80px, -100px) scale(0.5) rotate(-180deg);
+  }
+}
+
+@keyframes confettiBurst3 {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-60px, -80px) scale(0.5) rotate(90deg);
+  }
+}
+
+@keyframes confettiBurst4 {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(60px, -90px) scale(0.5) rotate(-90deg);
+  }
+}
+
+@keyframes confettiBurst5 {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-40px, -110px) scale(0.5) rotate(270deg);
+  }
+}
+
+@keyframes confettiBurst6 {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(40px, -70px) scale(0.5) rotate(-270deg);
   }
 }
 

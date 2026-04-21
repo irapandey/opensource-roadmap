@@ -57,11 +57,34 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+    
+    // Show save indicator
+    setShowSaveIndicator(true);
+    
+    // Clear any existing timeout
+    if (saveIndicatorTimeoutRef.current) {
+      clearTimeout(saveIndicatorTimeoutRef.current);
+    }
+    
+    // Hide indicator after 2 seconds
+    saveIndicatorTimeoutRef.current = setTimeout(() => {
+      setShowSaveIndicator(false);
+    }, 2000);
+    
+    return () => {
+      if (saveIndicatorTimeoutRef.current) {
+        clearTimeout(saveIndicatorTimeoutRef.current);
+      }
+    };
   }, [progress]);
 
   const hasShownCelebrationRef = useRef(false);
   const [showCelebration, setShowCelebration] = useState(false);
+  const [showStepMenu, setShowStepMenu] = useState(false);
+  const [showSaveIndicator, setShowSaveIndicator] = useState(false);
   const stepHeaderRef = useRef(null);
+  const stepMenuRef = useRef(null);
+  const saveIndicatorTimeoutRef = useRef(null);
 
   const currentSection = roadmapData[progress.currentStep];
   const currentSectionId = currentSection.id;
@@ -156,6 +179,41 @@ function App() {
 
     return undefined;
   }, [isAllStepsCompleted]);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      // Don't trigger if user is typing in an input
+      if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') {
+        return;
+      }
+
+      if (event.key === 'ArrowRight' && isCurrentStepCompleted && !isLastStep) {
+        event.preventDefault();
+        handleNext();
+      } else if (event.key === 'ArrowLeft' && !isFirstStep) {
+        event.preventDefault();
+        handlePrevious();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isCurrentStepCompleted, isFirstStep, isLastStep]);
+
+  // Close step menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (stepMenuRef.current && !stepMenuRef.current.contains(event.target)) {
+        setShowStepMenu(false);
+      }
+    };
+
+    if (showStepMenu) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, [showStepMenu]);
 
   const handleResetProgress = () => {
     const resetProgress = createInitialProgress();
@@ -254,9 +312,53 @@ function App() {
           <section className="experience-shell">
             <div className="experience-topbar" ref={stepHeaderRef}>
               <h2 className="experience-title">Your Learning Journey</h2>
-              <button className="ghost-button" onClick={handleResetProgress} type="button">
-                Reset progress
-              </button>
+              <div className="topbar-actions">
+                <div className="step-menu-container" ref={stepMenuRef}>
+                  <button
+                    className="ghost-button step-menu-trigger"
+                    onClick={() => setShowStepMenu(!showStepMenu)}
+                    type="button"
+                    aria-label="Jump to step"
+                    aria-expanded={showStepMenu}
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="8" y1="6" x2="21" y2="6"></line>
+                      <line x1="8" y1="12" x2="21" y2="12"></line>
+                      <line x1="8" y1="18" x2="21" y2="18"></line>
+                      <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                      <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                      <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                    </svg>
+                    Jump to step
+                  </button>
+                  {showStepMenu && (
+                    <div className="step-menu-dropdown">
+                      {roadmapData.map((section, idx) => (
+                        <button
+                          key={section.id}
+                          className={`step-menu-item ${idx === progress.currentStep ? 'active' : ''} ${progress.completedSections[section.id] ? 'completed' : ''}`}
+                          onClick={() => {
+                            handleGoToStep(idx);
+                            setShowStepMenu(false);
+                          }}
+                          type="button"
+                        >
+                          <span className="step-menu-number">Step {idx + 1}</span>
+                          <span className="step-menu-title">{section.title}</span>
+                          {progress.completedSections[section.id] && (
+                            <svg className="step-menu-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                              <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                          )}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                <button className="ghost-button" onClick={handleResetProgress} type="button">
+                  Reset progress
+                </button>
+              </div>
             </div>
 
             <ProgressTracker
@@ -307,6 +409,15 @@ function App() {
           </section>
         </div>
       </main>
+
+      {showSaveIndicator && (
+        <div className="save-indicator" role="status" aria-live="polite">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          Progress saved
+        </div>
+      )}
 
       <footer className="app-footer">
         <p>Keep Learning, Keep Contributing</p>

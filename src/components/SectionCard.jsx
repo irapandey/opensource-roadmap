@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import './SectionCard.css';
 
 // Icon components for each section type
@@ -37,9 +37,17 @@ const SectionCard = ({ section, index, isCompleted, onCompletionToggle }) => {
   const primarySection = section.sections[0];
   const additionalSections = section.sections.slice(1);
   const visibleSections = additionalSections.length > 0 ? additionalSections : section.sections;
+  const [showConfetti, setShowConfetti] = useState(false);
 
   const handleCheckboxChange = () => {
-    onCompletionToggle(section.id, !isCompleted);
+    const newCompletedState = !isCompleted;
+    onCompletionToggle(section.id, newCompletedState);
+    
+    // Show confetti when marking as complete
+    if (newCompletedState) {
+      setShowConfetti(true);
+      setTimeout(() => setShowConfetti(false), 1500);
+    }
   };
 
   return (
@@ -47,6 +55,16 @@ const SectionCard = ({ section, index, isCompleted, onCompletionToggle }) => {
       className={`section-card section-card-single ${isCompleted ? 'completed' : ''}`}
       style={{ '--index': index }}
     >
+      {showConfetti && (
+        <div className="mini-confetti-container" aria-hidden="true">
+          <span className="mini-confetti mini-confetti-1"></span>
+          <span className="mini-confetti mini-confetti-2"></span>
+          <span className="mini-confetti mini-confetti-3"></span>
+          <span className="mini-confetti mini-confetti-4"></span>
+          <span className="mini-confetti mini-confetti-5"></span>
+          <span className="mini-confetti mini-confetti-6"></span>
+        </div>
+      )}
       <div className="section-card-intro">
         <div className="section-title-row">
           <h2 className="section-title">
