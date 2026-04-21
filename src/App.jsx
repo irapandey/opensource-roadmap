@@ -149,6 +149,7 @@ function App() {
     setShowCelebration(false);
     setProgress(resetProgress);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(resetProgress));
+    scrollToStepHeader();
   };
 
   const handleCloseCelebration = () => {
@@ -214,12 +215,7 @@ function App() {
         <div className="container">
           <section className="experience-shell">
             <div className="experience-topbar" ref={stepHeaderRef}>
-              <div>
-                <p className="step-label">
-                  Step {progress.currentStep + 1} of {roadmapData.length}
-                </p>
-                <h2 className="experience-title">{currentSection.title}</h2>
-              </div>
+              <h2 className="experience-title">Your Learning Journey</h2>
               <button className="ghost-button" onClick={handleResetProgress} type="button">
                 Reset progress
               </button>
