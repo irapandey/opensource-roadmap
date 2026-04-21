@@ -2,7 +2,10 @@ import React, { useMemo } from 'react';
 import './SectionCard.css';
 
 const getStepSummary = (sections) => {
-  const itemCount = sections.reduce((total, subsection) => {
+  // Skip the first section (Key Idea) when counting
+  const sectionsToCount = sections.slice(1);
+  
+  const itemCount = sectionsToCount.reduce((total, subsection) => {
     return (
       total +
       subsection.items.reduce((count, item) => {
