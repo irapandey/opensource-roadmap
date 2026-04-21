@@ -1,72 +1,73 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useMemo } from 'react';
 import './SectionCard.css';
 
-const SectionCard = ({ section, index, isFirstSection, onToggle, isOpen, isCompleted, onCompletionToggle }) => {
-  const cardRef = useRef(null);
-  const prevIsOpenRef = useRef(isOpen);
+const getStepSummary = (sections) => {
+  const itemCount = sections.reduce((total, subsection) => {
+    return (
+      total +
+      subsection.items.reduce((count, item) => {
+        if (typeof item === 'object' && item.type === 'group') {
+          return count + item.items.length;
+        }
 
-  useEffect(() => {
-    // Only scroll when transitioning from closed to open (not when already open or closing)
-    if (isOpen && !prevIsOpenRef.current && cardRef.current) {
-      // Delay to allow the expansion animation to complete (CSS transition is 0.5s)
-      setTimeout(() => {
-        cardRef.current.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
-          inline: 'nearest'
-        });
-      }, 550);
-    }
-    prevIsOpenRef.current = isOpen;
-  }, [isOpen]);
+        return count + 1;
+      }, 0)
+    );
+  }, 0);
 
-  const handleToggle = () => {
-    onToggle(section.id);
-  };
+  return `${sections.length} focus areas • ${itemCount} key points`;
+};
+
+const SectionCard = ({ section, index, isCompleted, onCompletionToggle }) => {
+  const primarySection = section.sections[0];
+  const additionalSections = section.sections.slice(1);
+  const visibleSections = additionalSections.length > 0 ? additionalSections : section.sections;
+  const stepSummary = useMemo(() => getStepSummary(section.sections), [section.sections]);
 
   const handleCheckboxChange = () => {
     onCompletionToggle(section.id, !isCompleted);
   };
 
   return (
-    <div
-      ref={cardRef}
-      className={`section-card ${isOpen ? 'open' : ''} ${isCompleted ? 'completed' : ''}`}
+    <article
+      className={`section-card section-card-single ${isCompleted ? 'completed' : ''}`}
       style={{ '--index': index }}
     >
-      <div className="section-header" onClick={handleToggle}>
-        <div className="section-header-left">
-          <span className="section-number">{index + 1}</span>
-          <h2 className="section-title">{section.title}</h2>
+      <div className="section-card-intro">
+        <div className="section-badge-row">
+          <span className="section-number">Step {index + 1}</span>
+          <span className="section-summary">{stepSummary}</span>
         </div>
-        <div className="section-header-right">
-          <label className="checkbox-container" onClick={(e) => e.stopPropagation()}>
-            <input
-              type="checkbox"
-              checked={isCompleted}
-              onChange={handleCheckboxChange}
-              aria-label={`Mark ${section.title} as completed`}
-            />
-            <span className="checkmark"></span>
-          </label>
-          <span className={`expand-icon ${isOpen ? 'rotated' : ''}`}>
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </span>
-        </div>
+
+        <h2 className="section-title">{section.title}</h2>
+
+        {primarySection?.items?.[0] && (
+          <p className="section-description">{primarySection.items[0]}</p>
+        )}
       </div>
-      
-      <div className={`section-content ${isOpen ? 'expanded' : ''}`}>
+
+      <div className="completion-row">
+        <label className="checkbox-container">
+          <input
+            type="checkbox"
+            checked={isCompleted}
+            onChange={handleCheckboxChange}
+            aria-label={`Mark ${section.title} as completed`}
+          />
+          <span className="checkmark"></span>
+          <span className="completion-label">
+            {isCompleted ? 'Completed' : 'Mark this step as complete'}
+          </span>
+        </label>
+      </div>
+
+      <div className="section-content section-content-static expanded">
         <div className="section-content-inner">
-          {section.sections.map((subsection, idx) => (
+          {visibleSections.map((subsection, idx) => (
             <div key={idx} className="subsection">
-              {subsection.subtitle && (
-                <h3 className="subsection-title">{subsection.subtitle}</h3>
-              )}
+              {subsection.subtitle && <h3 className="subsection-title">{subsection.subtitle}</h3>}
               <ul className="subsection-list">
                 {subsection.items.map((item, itemIdx) => {
-                  // Handle grouped items with nested structure
                   if (typeof item === 'object' && item.type === 'group') {
                     return (
                       <li key={itemIdx} className="subsection-group">
@@ -81,7 +82,7 @@ const SectionCard = ({ section, index, isFirstSection, onToggle, isOpen, isCompl
                       </li>
                     );
                   }
-                  // Handle regular string items
+
                   return (
                     <li key={itemIdx} className="subsection-item">
                       {item}
@@ -93,7 +94,7 @@ const SectionCard = ({ section, index, isFirstSection, onToggle, isOpen, isCompl
           ))}
         </div>
       </div>
-    </div>
+    </article>
   );
 };
 

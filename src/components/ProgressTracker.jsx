@@ -1,31 +1,29 @@
 import React from 'react';
 import './ProgressTracker.css';
 
-const ProgressTracker = ({ sections, openSectionId, completedSections }) => {
+const ProgressTracker = ({ sections, completedSections, progressPercentage }) => {
   return (
-    <div className="progress-tracker">
-      <div className="progress-line"></div>
-      {sections.map((section, index) => {
-        const isCompleted = completedSections[section.id] || false;
-        const isActive = section.id === openSectionId;
-        
-        return (
-          <div
-            key={section.id}
-            className={`progress-step ${isActive ? 'active' : ''} ${isCompleted ? 'completed' : ''}`}
-          >
-            <div className="progress-dot">
-              {isCompleted ? (
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                  <path d="M2 6L5 9L10 3" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              ) : (
-                <span className="progress-number">{index + 1}</span>
-              )}
-            </div>
-          </div>
-        );
-      })}
+    <div className="progress-tracker-card">
+      <div className="progress-tracker-header">
+        <div>
+          <p className="progress-eyebrow">Your progress</p>
+          <h3 className="progress-heading">{progressPercentage}% complete</h3>
+        </div>
+        <span className="progress-counter">
+          {Object.values(completedSections).filter(Boolean).length}/{sections.length}
+        </span>
+      </div>
+
+      <div
+        className="progress-bar"
+        role="progressbar"
+        aria-valuenow={progressPercentage}
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-label="Roadmap completion progress"
+      >
+        <div className="progress-bar-fill" style={{ width: `${progressPercentage}%` }}></div>
+      </div>
     </div>
   );
 };
