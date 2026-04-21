@@ -263,11 +263,11 @@ function App() {
 
               <button
                 className="nav-button primary"
-                onClick={handleNext}
-                disabled={!isCurrentStepCompleted || isLastStep}
+                onClick={isAllStepsCompleted ? handleResetProgress : handleNext}
+                disabled={!isCurrentStepCompleted || (isLastStep && !isAllStepsCompleted)}
                 type="button"
               >
-                {isLastStep ? 'Journey complete' : 'Next step'}
+                {isAllStepsCompleted ? 'Reset Progress' : isLastStep ? 'Journey complete' : 'Next step'}
               </button>
             </div>
           </section>

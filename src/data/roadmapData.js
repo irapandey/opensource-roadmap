@@ -1,48 +1,39 @@
-// Parsed roadmap data from the TXT file
+// Parsed roadmap data from the "Open Source, One Step at a Time" blog series
 export const roadmapData = [
   {
     id: 1,
     title: "Choosing the Right Project",
+    blogUrl: "https://irapandey.medium.com/open-source-one-step-at-a-time-choosing-the-right-project-78f1a3977103",
     sections: [
       {
         subtitle: "Key Idea",
-        items: ["Your first project determines your open source experience."]
-      },
-      {
-        subtitle: "What to Optimize For",
         items: [
-          "Learning curve > Popularity",
-          "Active community > Big Project",
-          "Clarity > Complexity"
+          "Finding the right open source project is about fit, not fame. A well-matched project with active maintainers and clear entry points matters more than contributing to a popular repository."
         ]
       },
       {
-        subtitle: "Avoid",
+        subtitle: "What to Do",
         items: [
-          "Picking only famous projects"        ]
-      },
-      {
-        subtitle: "Look For",
-        items: [
-          "Active issues & discussions",
-          "Responsive maintainers",
-          '`good first issue` / `help wanted` labels',
-          "Clear documentation",
-          "Ability to run project locally"
+          "Shadow the project by subscribing to issues and PRs before contributing to understand workflows",
+          "Look for active issues, responsive maintainers, and 'good first issue' labels",
+          "Start with tools you already use—familiarity reduces barriers and helps spot improvements",
+          "Spend time exploring multiple projects; observation is part of the learning process",
+          "Check if issues are active, documentation is clear, and you can run the project locally"
         ]
       },
       {
-        subtitle: "Strategy",
+        subtitle: "What to Avoid",
         items: [
-          "Explore multiple projects before committing",
-          "Prefer tools you already use"
+          "Don't choose a project solely because it's famous or has high GitHub stars",
+          "Don't try to solve complex issues immediately without understanding the codebase context",
+          "Don't ignore documentation, past discussions, and merged pull requests",
+          "Don't expect to contribute immediately—observe the workflow first before jumping in"
         ]
       },
       {
-        subtitle: "Pro Tip: Shadowing",
+        subtitle: "Pro Tip",
         items: [
-          "Follow issues & PRs before contributing",
-          "Observe Code reviews, Maintainer Decisions and Communication style"
+          "Project maturity levels (like CNCF's Graduated/Incubating/Sandbox) don't indicate quality—they reflect adoption and stability. All levels offer valuable learning; they just differ in learning curves and contribution types."
         ]
       }
     ]
@@ -50,96 +41,39 @@ export const roadmapData = [
   {
     id: 2,
     title: "Assigning Your First Issue",
+    blogUrl:"https://medium.com/@irapandey/open-source-one-step-at-a-time-assigning-the-first-issue-53d5404015c9",
     sections: [
       {
         subtitle: "Key Idea",
-        items: ["Assigning = taking ownership (not reserving)"]
-      },
-      {
-        subtitle: "Step 1: Understand the Issue",
         items: [
-          "Read full issue + linked discussions",
-          "Reproduce bug (if applicable)",
-          "Be able to explain it in your own words"
+          "Assigning an issue is a public commitment, not a reservation. Success comes from deeply understanding the problem, clarifying your approach publicly, and maintaining consistent communication—not from speed or impressive solutions."
         ]
       },
       {
-        subtitle: "Step 2: Scope It",
+        subtitle: "What to Do",
         items: [
-          {
-            type: "group",
-            title: "Choose",
-            items: [
-              "Small bug fixes",
-              "Documentation updates",
-              "Well-defined tasks"
-            ]
-          },
-          {
-            type: "group",
-            title: "Avoid",
-            items: [
-              "Large refactors",
-              "Unclear discussions"
-            ]
-          }
+          "Read the entire issue, linked PRs, and related discussions before assigning",
+          "Comment your understanding and rough approach publicly before assigning to help clarify the issue",
+          "Search for 'prior art'—similar fixes, patterns, or implementations already in the codebase",
+          "Use community channels (Slack/Discord) to ask questions when stuck or unsure",
+          "Provide simple weekly updates on progress, blockers, or timelines after assigning",
+          "Only assign when you understand the problem, scope is clear, and approach is defined",
+          "Choose small, well-defined fixes like reproducible bugs or documentation corrections"
         ]
       },
       {
-        subtitle: "Step 3: Clarify Before Assigning",
+        subtitle: "What to Avoid",
         items: [
-          "Comment your understanding",
-          "Share approach",
-          "Ask for confirmation"
+          "Don't assign issues with unclear scope, large refactors, or long unresolved discussions",
+          "Don't immediately assign without understanding—labels are starting points, not guarantees",
+          "Don't go silent after assigning—transparency about delays is respected far more than silence",
+          "Don't try to impress with ambitious scope—your first contribution needs to be finishable, not impressive"
         ]
       },
       {
-        subtitle: "Step 4: Look for Prior Art",
+        subtitle: "Pro Tip",
         items: [
-          {
-            type: "group",
-            title: "Check",
-            items: [
-              "Closed PRs",
-              "Similar fixes",
-              "Existing patterns"
-            ]
-          }
-        ]
-      },
-      {
-        subtitle: "Step 5: Use Community",
-        items: [
-          {
-            type: "group",
-            title: "Ask questions in",
-            items: [
-              "Slack / Discord",
-              "GitHub discussions"
-            ]
-          }
-        ]
-      },
-      {
-        subtitle: "Step 6: Assign When Ready",
-        items: [
-          {
-            type: "group",
-            title: "Only assign if",
-            items: [
-              "You understand the problem",
-              "Scope is clear",
-              "Approach is defined"
-            ]
-          }
-        ]
-      },
-      {
-        subtitle: "Step 7: Stay Active",
-        items: [
-          "Give periodic updates",
-          "Communicate delays",
-          "Unassign if stuck"
+          "Not every issue is fully understood by maintainers. By commenting your reasoning publicly before coding, you're not just preparing—you're often providing the missing structure the issue needed. Visible reasoning moves conversations forward even when slightly wrong."
         ]
       }
     ]
@@ -147,88 +81,38 @@ export const roadmapData = [
   {
     id: 3,
     title: "Raising Your First Pull Request",
+    blogUrl:"https://irapandey.medium.com/open-source-one-step-at-a-time-choosing-the-right-project-78f1a3977103",
     sections: [
       {
         subtitle: "Key Idea",
-        items: ["PR = conversation, not submission"]
-      },
-      {
-        subtitle: "Before Opening PR",
         items: [
-          "Revisit issue → ensure exact solution",
-          {
-            type: "group",
-            title: "Follow CONTRIBUTING.md",
-            items: [
-              "Branch naming",
-              "Commit format",
-              "PR template",
-              "CLA / DCO"
-            ]
-          }
+          "A pull request is a conversation, not a submission. Your goal isn't perfection or impressing reviewers—it's clarity in explaining what you did, why you did it, and making your thinking easy to understand for future contributors."
         ]
       },
       {
-        subtitle: "DCO Tip",
-        items: ['Sign your commits - git commit -s -m "message"']
-      },
-      {
-        subtitle: "Self Review Checklist",
+        subtitle: "What to Do",
         items: [
-          "Test in multiple scenarios",
-          "Run tests locally",
-          "Remove unrelated changes",
-          "Read diff like a reviewer"
+          "Review your own PR first using the 'rule of three'—validate fixes in at least three different scenarios",
+          "Write PR descriptions that explain what was happening, why it happened, what you changed, and how you tested it",
+          "Use draft PRs for early feedback when unsure about direction—openness leads to better outcomes",
+          "Follow contribution guidelines carefully: branch naming, PR title format, commit standards, DCO sign-offs (git commit -s)",
+          "Run tests locally before pushing—passing local tests shows respect for reviewer time",
+          "Read the diff slowly as if it's someone else's code before submitting"
         ]
       },
       {
-        subtitle: "Writing PR Description",
+        subtitle: "What to Avoid",
         items: [
-          {
-            type: "group",
-            title: "Include",
-            items: [
-              "Problem",
-              "Root cause",
-              "Changes made",
-              "Testing done"
-            ]
-          }
+          "Don't drift into redesigning the system while fixing a small bug—solve the problem, don't expand scope",
+          "Don't panic when CI checks fail—read logs carefully, fix locally, and push again; it's workflow, not judgment",
+          "Don't skip running tests locally before pushing to CI",
+          "Don't overengineer your first PR by adding improvements beyond the issue scope"
         ]
       },
       {
-        subtitle: "Best Practices",
+        subtitle: "Pro Tip",
         items: [
-          {
-            type: "group",
-            title: "Keep PR",
-            items: [
-              "Small",
-              "Focused",
-              "Clear"
-            ]
-          }
-        ]
-      },
-      {
-        subtitle: "Draft PRs",
-        items: [
-          "Use for early feedback",
-          "Run CI while working"
-        ]
-      },
-      {
-        subtitle: "CI Failures",
-        items: [
-          "Normal part of workflow",
-          "Read logs → fix → push"
-        ]
-      },
-      {
-        subtitle: "Avoid",
-        items: [
-          "Overengineering",
-          "Expanding scope"
+          "Your PR description isn't just for today's reviewer—it's for the contributor who returns two years later wondering 'Why was this changed?' Document the decision, not just the code. Future you (and others) will thank you."
         ]
       }
     ]
@@ -236,39 +120,37 @@ export const roadmapData = [
   {
     id: 4,
     title: "Responding to Review Comments",
+    blogUrl:"https://irapandey.medium.com/open-source-one-step-at-a-time-responding-to-review-comments-3bfe9715df1e",
     sections: [
       {
         subtitle: "Key Idea",
-        items: ["Reviews = collaboration, not criticism so no panic needed"]
-      },
-      {
-        subtitle: "How to Respond",
         items: [
-          "Add small commits per change",
-          "Reply to each comment",
-          "Mark resolved when done"
+          "Review comments are collaboration, not criticism. They represent maintainers investing time in your work, and responding thoughtfully—even when comments feel intimidating—is what separates contributors who grow from those who abandon their PRs."
         ]
       },
       {
-        subtitle: "Best Practices",
+        subtitle: "What to Do",
         items: [
-          "Don't force push (unless asked)",
-          "Run linters before pushing"
+          "Take time to read comments carefully and understand suggestions before reacting—give yourself breathing room",
+          "Add small incremental commits addressing comments one by one to keep history clear for reviewers",
+          "Reply to comments explaining what you changed and mark conversations as resolved to keep threads clean",
+          "Follow up politely after a week if no response: 'I've addressed the comments, would love another look when you have time'",
+          "Run linters before pushing changes to avoid repeated CI failures"
         ]
       },
       {
-        subtitle: "Handling Delays",
-        items: ["Wait ~1 week → follow up politely"]
-      },
-      {
-        subtitle: "Mindset",
-        items: ["Feedback is about code, not you"]
-      },
-      {
-        subtitle: "Critical Rule",
+        subtitle: "What to Avoid",
         items: [
-          "❌ Don't abandon PR",
-          "✅ Treat review as learning"
+          "Don't take feedback personally—comments are about code, not you; text doesn't carry tone well",
+          "Don't force push while reviews are ongoing unless maintainers specifically request it",
+          "Don't abandon your PR when comments feel intimidating—every review is a learning opportunity",
+          "Don't forget to run linters before pushing—build this habit early"
+        ]
+      },
+      {
+        subtitle: "Pro Tip",
+        items: [
+          "Review comments often fall into categories: stylistic changes, test requests, clarification questions, or better approaches. Understanding the type helps you respond appropriately. Most comments are suggestions, not demands—there's no hidden meaning."
         ]
       }
     ]
@@ -276,86 +158,44 @@ export const roadmapData = [
   {
     id: 5,
     title: "After Your First PR Gets Merged",
+    blogUrl:"https://medium.com/@irapandey/open-source-one-step-at-a-time-after-your-first-pr-gets-merged-2ac5728a9d8c",
     sections: [
       {
         subtitle: "Key Idea",
-        items: ["First PR = milestone, not endpoint"]
-      },
-      {
-        subtitle: "Immediate Step",
-        items: ["Acknowledge & celebrate"]
-      },
-      {
-        subtitle: "Reflection",
         items: [
-          {
-            type: "group",
-            title: "Revisit PR",
-            items: [
-              "Review comments",
-              "Improvements made",
-              "Missed areas"
-            ]
-          }
+          "Your first merged PR is a milestone that proves you can contribute, but the real growth comes from reflection and building momentum without pressure. One PR gives you confidence; what you do next determines where you grow."
         ]
       },
       {
-        subtitle: "What You Gain",
+        subtitle: "What to Do",
         items: [
-          "Understanding of workflow",
-          "Confidence",
-          "Familiarity with codebase"
+          "Pause and celebrate your first merge—acknowledge the milestone before rushing to the next issue",
+          "Revisit your merged PR to study review comments, changes made, and how your approach evolved",
+          "Try something slightly different for your next contribution—if you fixed a bug, try documentation; if you wrote tests, try a code change",
+          "Keep coming back consistently without daily pressure—momentum matters more than speed",
+          "Reflect on what you missed, what maintainers suggested, and patterns you're starting to notice"
         ]
       },
       {
-        subtitle: "Next Steps",
+        subtitle: "What to Avoid",
         items: [
-          {
-            type: "group",
-            title: "Try different contribution types",
-            items: [
-              "Tests",
-              "Bug fixes",
-              "Docs",
-              "Small features"
-            ]
-          }
+          "Don't immediately jump to the next issue—take time to reflect on what you learned from the first one",
+          "Don't turn momentum into pressure by feeling you must contribute every day",
+          "Don't assume one merged PR makes you experienced—you're still a beginner, but now with confidence",
+          "Don't ignore the learning hidden in your first contribution—patterns you notice now improve future work"
         ]
       },
       {
-        subtitle: "Growth Strategy",
+        subtitle: "Pro Tip",
         items: [
-          "Increase complexity gradually",
-          "Stay consistent (not frequent)"
-        ]
-      },
-      {
-        subtitle: "Mindset Shift",
-        items: [
-          "Less hesitation",
-          "More confidence",
-          "Better decision-making"
-        ]
-      }
-    ]
-  },
-  {
-    id: 6,
-    title: "Final Flow (Core Mental Model)",
-    sections: [
-      {
-        subtitle: "",
-        items: [
-          "Choose wisely",
-          "Observe deeply",
-          "Understand clearly",
-          "Start small",
-          "Communicate consistently",
-          "Iterate and grow"
+          "The biggest shift after your first PR isn't technical—it's mental. The hesitation reduces, the fear of 'what if this is wrong' shrinks, and you start trusting yourself more. That confidence is what really changes your open source journey."
         ]
       }
     ]
   }
 ];
+
+// Data extracted from "Open Source, One Step at a Time" blog series
+// Created with insights from open-source-blog-insights.json
 
 // Made with Bob
