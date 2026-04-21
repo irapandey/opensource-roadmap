@@ -15,7 +15,7 @@ const getStepSummary = (sections) => {
     );
   }, 0);
 
-  return `${sections.length} focus areas • ${itemCount} key points`;
+  return `${itemCount} key points`;
 };
 
 const SectionCard = ({ section, index, isCompleted, onCompletionToggle }) => {
