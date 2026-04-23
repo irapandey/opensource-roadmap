@@ -164,20 +164,12 @@ function App() {
     if (isAllStepsCompleted && !hasShownCelebrationRef.current) {
       hasShownCelebrationRef.current = true;
       setShowCelebration(true);
-
-      const timeoutId = window.setTimeout(() => {
-        setShowCelebration(false);
-      }, 3200);
-
-      return () => window.clearTimeout(timeoutId);
     }
 
     if (!isAllStepsCompleted) {
       hasShownCelebrationRef.current = false;
       setShowCelebration(false);
     }
-
-    return undefined;
   }, [isAllStepsCompleted]);
 
   // Keyboard navigation
@@ -260,6 +252,25 @@ function App() {
             <p className="celebration-modal-copy">
               Every step is complete. Take the win and go build something meaningful in open source.
             </p>
+            <div className="celebration-divider"></div>
+            <div className="celebration-next-step">
+              <div className="next-step-icon">⬡</div>
+              <h3 className="next-step-title">Ready for the next challenge?</h3>
+              <p className="next-step-description">
+                Dive deep into Kubernetes and start contributing to one of the most impactful open source ecosystems
+              </p>
+              <a
+                href="https://irapandey.github.io/k8s-resource/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="next-step-button"
+              >
+                <span>Explore Kubernetes Resources Hub</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
       )}
